@@ -430,6 +430,25 @@
             box-shadow: 0 0 15px var(--magic-glow);
         }
 
+        /* Mapas */
+        .map-container {
+            width: 100%;
+            height: 250px;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            border: 2px solid rgba(223, 186, 107, 0.4);
+            border-radius: 5px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            filter: grayscale(80%) invert(90%) hue-rotate(180deg);
+        }
+
         /* Formularios */
         .form-container {
             margin-top: 15px;
@@ -713,8 +732,12 @@
                 <!-- Ceremonia Religiosa -->
                 <div class="info-block">
                     <div class="info-label">Ceremonia Religiosa</div>
+                    <div class="names-list">Parroquia Nuestra Señora de Guadalupe</div>
                     <div class="names-list" style="font-size: 20px; color: var(--gold-primary); margin-bottom: 10px;">3:45 pm</div>
-                    <a href="https://maps.app.goo.gl/o527K4VCj2SHHjk39" target="_blank" class="btn-gold">Ver Ubicación en Mapa</a>
+                    <div class="map-container">
+                        <iframe src="https://maps.google.com/maps?q=Parroquia%20Nuestra%20Se%C3%B1ora%20de%20Guadalupe&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                    <a href="https://maps.app.goo.gl/x7PKpuGLnCch4Sk27" target="_blank" class="btn-gold">Ver Ubicación en Mapa</a>
                 </div>
 
                 <div class="divider"></div>
@@ -722,8 +745,12 @@
                 <!-- Recepción -->
                 <div class="info-block">
                     <div class="info-label">Recepción</div>
+                    <div class="names-list">Jardín Quinta Paraíso</div>
                     <div class="names-list" style="font-size: 20px; color: var(--gold-primary); margin-bottom: 10px;">5:30 pm</div>
-                    <a href="https://maps.app.goo.gl/CNJoakVMjomiGEFq8" target="_blank" class="btn-gold">Ver Ubicación en Mapa</a>
+                    <div class="map-container">
+                        <iframe src="https://maps.google.com/maps?q=Jard%C3%ADn%20Quinta%20Para%C3%ADso&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                    <a href="https://maps.app.goo.gl/gNg3H915WtemPiYJA" target="_blank" class="btn-gold">Ver Ubicación en Mapa</a>
                 </div>
 
                 <div class="divider"></div>

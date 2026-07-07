@@ -33,7 +33,7 @@
             scroll-behavior: smooth;
         }
 
-        /* Capa de Fondo Fija - Independiente para evitar distorsiones */
+        /* Capa de Fondo Fija */
         #fixed-bg {
             position: fixed;
             top: 0;
@@ -51,7 +51,7 @@
             opacity: 1;
         }
 
-        /* Estilos del Sobre Animado (Pantalla de Entrada) */
+        /* Estilos del Sobre Animado */
         #envelope-screen {
             position: fixed;
             top: 0;
@@ -195,7 +195,7 @@
             animation: pulse 2s infinite;
         }
 
-        /* Contenido de la Invitación Principal */
+        /* Contenido Principal */
         #main-invitation {
             min-height: 100vh;
             position: relative;
@@ -206,7 +206,7 @@
             opacity: 0;
             transform: translateY(20px);
             transition: opacity 1.5s ease-out 0.6s, transform 1.5s ease-out 0.6s;
-            z-index: 2; /* Por encima del fondo fijo */
+            z-index: 2;
         }
 
         body.content-active #main-invitation {
@@ -229,11 +229,7 @@
             z-index: 3;
         }
 
-        /* Elementos Decorativos */
-        .lotus-header {
-            margin-bottom: 20px;
-        }
-
+        .lotus-header { margin-bottom: 20px; }
         .lotus-header svg {
             width: 65px;
             height: 65px;
@@ -241,7 +237,6 @@
             filter: drop-shadow(0 0 8px var(--magic-glow));
         }
 
-        /* Tipografía */
         .section-tag {
             font-family: 'Cinzel', serif;
             font-size: 12px;
@@ -287,10 +282,7 @@
             margin: 30px auto;
         }
 
-        /* Bloques de Información */
-        .info-block {
-            margin-bottom: 25px;
-        }
+        .info-block { margin-bottom: 25px; }
 
         .info-label {
             font-family: 'Cinzel', serif;
@@ -402,9 +394,7 @@
             box-shadow: 0 0 10px var(--magic-glow);
         }
 
-        .calendar-day.empty {
-            color: transparent;
-        }
+        .calendar-day.empty { color: transparent; }
 
         /* Botones Generales */
         .btn-gold {
@@ -449,7 +439,7 @@
             filter: grayscale(80%) invert(90%) hue-rotate(180deg);
         }
 
-        /* Formularios */
+        /* Formularios y Selects */
         .form-container {
             margin-top: 15px;
             display: flex;
@@ -479,9 +469,82 @@
             color: rgba(163, 184, 176, 0.6);
         }
 
+        select.form-input option {
+            background: var(--bg-dark);
+            color: var(--text-light);
+            padding: 10px;
+        }
+
         textarea.form-input {
             resize: vertical;
             min-height: 80px;
+        }
+
+        /* Ticket Digital Pase VIP */
+        .digital-ticket {
+            background: linear-gradient(135deg, #0d2e22 0%, #081d15 100%);
+            border: 1px solid var(--gold-primary);
+            border-radius: 12px;
+            padding: 25px 15px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.8);
+            margin: 0 auto;
+            max-width: 320px;
+            animation: fadeInTicket 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeInTicket {
+            from { opacity: 0; transform: scale(0.9) translateY(-10px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .digital-ticket::before, .digital-ticket::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: #06140e; /* Color similar al fondo detrás del ticket */
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+            border: 1px solid var(--gold-primary);
+        }
+        .digital-ticket::before {
+            left: -20px;
+            border-left-color: transparent;
+            border-top-color: transparent;
+            border-bottom-color: transparent;
+        }
+        .digital-ticket::after {
+            right: -20px;
+            border-right-color: transparent;
+            border-top-color: transparent;
+            border-bottom-color: transparent;
+        }
+
+        .ticket-header {
+            font-family: 'Cinzel', serif;
+            font-size: 15px;
+            color: var(--text-muted);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            border-bottom: 1px dashed rgba(223, 186, 107, 0.3);
+            padding-bottom: 15px;
+        }
+
+        .ticket-body { padding: 10px 0; }
+
+        .ticket-footer {
+            font-size: 10px;
+            color: var(--gold-secondary);
+            margin-top: 15px;
+            border-top: 1px dashed rgba(223, 186, 107, 0.3);
+            padding-top: 15px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
         /* Luciérnagas Animadas */
@@ -582,7 +645,7 @@
     <!-- Capa de Fondo Estática -->
     <div id="fixed-bg"></div>
 
-    <!-- Contenedor para las luciérnagas dinámicas (Capa Frontal) -->
+    <!-- Contenedor para las luciérnagas dinámicas -->
     <div id="fireflies-container"></div>
 
     <!-- Audio de Fondo -->
@@ -653,7 +716,7 @@
                 </div>
             </div>
 
-            <!-- Widget Calendario (Octubre 2026) -->
+            <!-- Widget Calendario -->
             <div class="calendar-container">
                 <div class="calendar-month">Octubre</div>
                 <div class="calendar-grid">
@@ -703,7 +766,6 @@
                 </div>
             </div>
 
-            <!-- Botón Agregar al Calendario -->
             <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=XV+A%C3%B1os+de+Berenice&dates=20261010T204500Z/20261011T040000Z&details=Celebremos+juntos+este+d%C3%ADa+tan+especial" target="_blank" class="btn-gold">
                 Agregar al Calendario
             </a>
@@ -782,6 +844,42 @@
                 <p class="phrase" style="margin: 30px 0;">
                     <span class="phrase-bold">"Bajo la estrella Evangeline, los sueños florecen y la magia despierta.<br>Te invito a acompañarme a celebrar mis XV años, en una noche donde los cuentos cobran vida y creer es el primer paso hacia un final feliz."</span>
                 </p>
+
+                <div class="divider"></div>
+
+                <!-- SECCIÓN DE PASES DIGITALES -->
+                <div class="info-block" id="pases-section">
+                    <div class="info-label">Consulta tus Pases VIP</div>
+                    <div style="font-family: 'Montserrat', sans-serif; font-size: 12px; color: var(--text-muted); margin-bottom: 15px;">Busca tu nombre en la lista para descubrir tu boleto dorado.</div>
+                    
+                    <div class="form-container" style="margin-bottom: 25px;">
+                        <select id="guest-select" class="form-input" onchange="showPasses()">
+                            <option value="">Selecciona tu nombre de la lista...</option>
+                            <!-- Los invitados se cargarán aquí por JS -->
+                        </select>
+                    </div>
+
+                    <!-- Boleto Visual (Oculto por defecto) -->
+                    <div id="ticket-container" style="display: none;">
+                        <div class="digital-ticket">
+                            <div class="ticket-header">
+                                <svg viewBox="0 0 24 24" style="width: 20px; height: 20px; fill: var(--gold-primary); vertical-align: bottom; margin-right: 5px;"><path d="M12 2L15 9H22L16.5 13.5L18.5 21L12 17L5.5 21L7.5 13.5L2 9H9L12 2Z"/></svg>
+                                Pase Digital VIP
+                                <svg viewBox="0 0 24 24" style="width: 20px; height: 20px; fill: var(--gold-primary); vertical-align: bottom; margin-left: 5px;"><path d="M12 2L15 9H22L16.5 13.5L18.5 21L12 17L5.5 21L7.5 13.5L2 9H9L12 2Z"/></svg>
+                            </div>
+                            
+                            <div class="ticket-body">
+                                <div id="ticket-name" style="font-family: 'Cinzel', serif; font-size: 18px; color: var(--gold-primary); margin-bottom: 15px; font-weight: bold; letter-spacing: 1px;"></div>
+                                <div style="font-family: 'Montserrat', sans-serif; font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px;">Pases Asignados</div>
+                                <div id="ticket-count" style="font-family: 'Pinyon Script', cursive; font-size: 45px; color: #fff; line-height: 1; text-shadow: 0 0 10px var(--magic-glow);"></div>
+                            </div>
+                            
+                            <div class="ticket-footer">
+                                Toma captura de pantalla y presenta este pase al llegar al evento
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="divider"></div>
 
@@ -909,6 +1007,47 @@
             document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
             document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
         }, 1000);
+
+        // --- SISTEMA DE PASES DIGITALES ---
+        // Lista generada exactamente del archivo Excel, ordenada alfabéticamente
+        const guestData = {"Abigail Osorio": 3, "Abuelita Alicia": 1, "Abuelito Javier": 2, "Abuelito José Luis": 2, "Adriana Manríquez": 2, "Adrián Gonzales": 2, "Adrián López": 4, "Alberto Cerecer": 3, "Alejandro Miguel": 5, "Alexis Cruz": 2, "Alfonso": 2, "Amaya Rojo": 1, "Angelica": 4, "Antonio Pérez": 5, "Araceli Zaimez": 2, "Aranza": 1, "Aristeo": 4, "Barut López": 4, "Beatriz": 2, "Beatriz Tobon": 3, "Belén Galicia": 1, "Cesar Pimentel": 2, "Chirris": 1, "Claudia Sánchez": 2, "César Miguel": 1, "Dagoberto Reyes": 2, "Dalvi Miguel": 1, "Diana López": 8, "Dianey": 1, "Donaciano Antonio": 2, "Dulce Susana": 2, "Edwin Valdez": 2, "Enrique Cruz": 3, "Enrique López": 4, "Erick": 2, "Ernesto Salinas": 3, "Esther Cruz": 4, "Esther Reyes": 1, "Estrella": 3, "Ethan Ernesto": 1, "Eustaquio Cruz": 5, "Eustolia González": 5, "Evelin Cruz": 4, "Federico Francisco": 5, "Fernanda": 1, "Flavio  Jiménez": 3, "Francisco Miguel": 4, "Frida": 1, "Fulgencio Martín": 4, "Félix Gonzales": 5, "Félix Torrijos": 4, "Gabriel": 1, "Gabriela Peralta": 1, "Gerardo": 4, "Gina Díaz Reyes": 2, "Golla": 1, "Griselda Pérez": 4, "Gudelia Miguel": 2, "Hector  Vargas": 6, "Humberto Meléndez Pacheco": 2, "Héctor": 1, "Héctor Valdez": 3, "Isaac Alvarado": 2, "Ismael Cruz": 3, "Ismael Zamudio": 2, "Jaime Ramos": 4, "Jair": 2, "Janett": 4, "Javier Jiménez": 2, "Javier Mendoza": 4, "Jazz Raya": 4, "Jenni Santos": 4, "Jessi Cruz": 2, "Jesús": 1, "Joel Jiménez": 2, "Jorge": 2, "Jorge Valdez": 5, "Jose Carmen Tafolla": 6, "Josefina Méndez": 5, "Joselin": 3, "Josué": 2, "Juan Carlos Jiménez": 2, "Juan Ramirez": 4, "Juan Vargas": 2, "Julieta": 1, "Juventino Cruz": 2, "Karina Miguel": 1, "Lucero González": 4, "Luis Alberto": 2, "Luis Alberto Jiménez": 3, "Luis Bolaños": 4, "Luis Mendoza": 3, "Luis Ávalos Estrada": 4, "Magdalena Jiménez": 3, "Maitechu Rangel": 5, "Marco A.": 3, "Marco A.  Miguel": 3, "Marco Arana": 2, "Marcos Cruz": 5, "Margarita": 5, "Martha Villagran": 1, "Martín Retana": 4, "Maurilio Cruz": 4, "Max": 1, "Mayra": 4, "Mireya": 3, "Noemí Cruz": 2, "Noé Ferrer": 1, "Omar  López": 1, "Onesimo": 5, "Paula Gonzales": 7, "Pina": 1, "Ramiro  Reyes": 2, "Raúl   Reyes": 1, "Regina": 1, "Renata Piña": 1, "Renatita": 1, "Ricardo Bautista": 2, "Ricardo Cruz": 4, "Rodolfo López": 2, "Rosalba Reyes": 3, "Roy Ortiz": 3, "Rutilio  Jiménez": 10, "Said Flores": 1, "Samantha Ponce": 1, "Sara Aletia": 1, "Sebastián Reyes": 5, "Sergio Bautista": 2, "Silvia Galvan": 4, "Silvia Reyes": 8, "Susana Jiménez": 3, "Tabata Denisse Robles": 5, "Tais": 1, "Tomasa Miguel": 2, "Ulises Eduardo Gonzales": 4, "Valeria": 1, "Venancio Cruz": 2, "Victoria": 1, "Víctor Reyes": 5, "Wenceslao Ferrer": 3, "Yahel": 1, "Yaz": 2, "Yazmín Gonzales": 2, "Álvaro López": 2};
+
+        // Cargar nombres en el selector
+        document.addEventListener("DOMContentLoaded", () => {
+            const select = document.getElementById("guest-select");
+            for (const [name, passes] of Object.entries(guestData)) {
+                const option = document.createElement("option");
+                option.value = passes;
+                option.textContent = name;
+                select.appendChild(option);
+            }
+        });
+
+        // Mostrar Pases y Animar Ticket
+        function showPasses() {
+            const select = document.getElementById("guest-select");
+            const container = document.getElementById("ticket-container");
+            const nameEl = document.getElementById("ticket-name");
+            const countEl = document.getElementById("ticket-count");
+            const ticketElement = document.querySelector(".digital-ticket");
+            
+            if (select.selectedIndex > 0) {
+                const name = select.options[select.selectedIndex].text;
+                const passes = select.value;
+                
+                nameEl.textContent = name;
+                countEl.textContent = passes + (passes == 1 ? " PASE" : " PASES");
+                
+                container.style.display = "block";
+                
+                // Reiniciar animación para que haga el efecto cada vez que se selecciona a alguien
+                ticketElement.style.animation = 'none';
+                ticketElement.offsetHeight; // trigger reflow
+                ticketElement.style.animation = null; 
+            } else {
+                container.style.display = "none";
+            }
+        }
 
         // Envío de WhatsApp - RSVP
         function sendRSVP() {

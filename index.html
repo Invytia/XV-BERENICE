@@ -642,23 +642,18 @@
 </head>
 <body>
 
-    <!-- Capa de Fondo Estática -->
     <div id="fixed-bg"></div>
 
-    <!-- Contenedor para las luciérnagas dinámicas -->
     <div id="fireflies-container"></div>
 
-    <!-- Audio de Fondo -->
     <audio id="bg-music" src="assets/song.mp3" loop></audio>
 
-    <!-- Botón Sticky de Música -->
     <button id="music-btn" onclick="toggleMusic()" aria-label="Reproducir/Pausar Música">
         <svg viewBox="0 0 24 24">
             <path d="M8 5v14l11-7z"/>
         </svg>
     </button>
 
-    <!-- Pantalla del Sobre -->
     <div id="envelope-screen">
         <div class="envelope-wrapper" onclick="openEnvelope()">
             <div class="front-flap"></div>
@@ -673,7 +668,6 @@
         </div>
     </div>
 
-    <!-- Contenido de la Invitación Principal -->
     <main id="main-invitation">
         
         <div class="invitation-frame">
@@ -690,13 +684,11 @@
                 "Los sueños se cumplen, y hoy uno de los míos se hace realidad, con la bendición de Dios y el amor de mi familia."
             </p>
 
-            <!-- Sección de Fecha Principal -->
             <div class="info-block">
                 <div class="info-label">Fecha del Evento</div>
                 <div class="info-value-main" style="color: var(--gold-primary);">10 de Octubre</div>
             </div>
 
-            <!-- Cuenta Regresiva -->
             <div class="countdown-container">
                 <div class="countdown-box">
                     <div class="countdown-number" id="days">00</div>
@@ -716,7 +708,6 @@
                 </div>
             </div>
 
-            <!-- Widget Calendario -->
             <div class="calendar-container">
                 <div class="calendar-month">Octubre</div>
                 <div class="calendar-grid">
@@ -774,7 +765,6 @@
 
             <div class="info-grid">
                 
-                <!-- Padres -->
                 <div class="info-block">
                     <div class="info-label">Con la bendición de Dios y mis padres</div>
                     <div class="names-list">Rigoberto Jiménez Miguel</div>
@@ -783,7 +773,6 @@
 
                 <div class="divider"></div>
 
-                <!-- Padrinos -->
                 <div class="info-block">
                     <div class="info-label">Mi Padrino</div>
                     <div class="names-list">Javier Jiménez Miguel</div>
@@ -791,7 +780,6 @@
 
                 <div class="divider"></div>
 
-                <!-- Ceremonia Religiosa -->
                 <div class="info-block">
                     <div class="info-label">Ceremonia Religiosa</div>
                     <div class="names-list">Parroquia Nuestra Señora de Guadalupe</div>
@@ -804,7 +792,6 @@
 
                 <div class="divider"></div>
 
-                <!-- Recepción -->
                 <div class="info-block">
                     <div class="info-label">Recepción</div>
                     <div class="names-list">Jardín Quinta Paraíso</div>
@@ -817,7 +804,6 @@
 
                 <div class="divider"></div>
 
-                <!-- Código de Vestimenta -->
                 <div class="info-block">
                     <div class="info-label">Código de Vestimenta</div>
                     <div class="info-value-main" style="font-size: 20px; margin-bottom: 5px;">Formal</div>
@@ -826,7 +812,6 @@
 
                 <div class="divider"></div>
 
-                <!-- Mesa de Regalos / Lluvia de Sobres -->
                 <div class="info-block">
                     <div class="info-label">Si Quieres Hacerme Un Regalo</div>
                     <svg viewBox="0 0 24 24" style="width: 45px; height: 45px; fill: var(--gold-primary); margin: 10px 0; filter: drop-shadow(0 0 5px var(--magic-glow));">
@@ -840,14 +825,12 @@
 
                 <div class="divider"></div>
 
-                <!-- Frase Final -->
                 <p class="phrase" style="margin: 30px 0;">
                     <span class="phrase-bold">"Bajo la estrella Evangeline, los sueños florecen y la magia despierta.<br>Te invito a acompañarme a celebrar mis XV años, en una noche donde los cuentos cobran vida y creer es el primer paso hacia un final feliz."</span>
                 </p>
 
                 <div class="divider"></div>
 
-                <!-- SECCIÓN DE PASES DIGITALES -->
                 <div class="info-block" id="pases-section">
                     <div class="info-label">Consulta tus Pases VIP</div>
                     <div style="font-family: 'Montserrat', sans-serif; font-size: 12px; color: var(--text-muted); margin-bottom: 15px;">Busca tu nombre en la lista para descubrir tu boleto dorado.</div>
@@ -855,11 +838,9 @@
                     <div class="form-container" style="margin-bottom: 25px;">
                         <select id="guest-select" class="form-input" onchange="showPasses()">
                             <option value="">Selecciona tu nombre de la lista...</option>
-                            <!-- Los invitados se cargarán aquí por JS -->
-                        </select>
+                            </select>
                     </div>
 
-                    <!-- Boleto Visual (Oculto por defecto) -->
                     <div id="ticket-container" style="display: none;">
                         <div class="digital-ticket">
                             <div class="ticket-header">
@@ -871,7 +852,7 @@
                             <div class="ticket-body">
                                 <div id="ticket-name" style="font-family: 'Cinzel', serif; font-size: 18px; color: var(--gold-primary); margin-bottom: 15px; font-weight: bold; letter-spacing: 1px;"></div>
                                 <div style="font-family: 'Montserrat', sans-serif; font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px;">Pases Asignados</div>
-                                <div id="ticket-count" style="font-family: 'Pinyon Script', cursive; font-size: 45px; color: #fff; line-height: 1; text-shadow: 0 0 10px var(--magic-glow);"></div>
+                                <div id="ticket-count" style="font-family: 'Cinzel', serif; font-weight: 700; font-size: 40px; color: #fff; line-height: 1; text-shadow: 0 0 10px var(--magic-glow);"></div>
                             </div>
                             
                             <div class="ticket-footer">
@@ -883,7 +864,6 @@
 
                 <div class="divider"></div>
 
-                <!-- Confirmación de Asistencia (RSVP) -->
                 <div class="info-block">
                     <div class="info-label">Confirmación de Asistencia</div>
                     <div class="form-container">
@@ -894,7 +874,6 @@
 
                 <div class="divider"></div>
 
-                <!-- Muro de Deseos -->
                 <div class="info-block">
                     <div class="info-label">Deja un mensaje para Berenice</div>
                     <div class="form-container">

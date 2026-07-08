@@ -469,6 +469,12 @@
         .form-input::placeholder {
             color: rgba(163, 184, 176, 0.6);
         }
+        
+        select.form-input option {
+            background: var(--bg-dark);
+            color: var(--text-light);
+            padding: 10px;
+        }
 
         textarea.form-input {
             resize: vertical;
@@ -816,7 +822,7 @@
                 <div class="info-block">
                     <div class="info-label">Código de Vestimenta</div>
                     <div class="info-value-main" style="font-size: 20px; margin-bottom: 5px;">Formal</div>
-                    <div style="font-family: 'Montserrat', sans-serif; font-size: 12px; color: var(--text-muted);">(Favor de reservar el color pendiente)</div>
+                    <div style="font-family: 'Montserrat', sans-serif; font-size: 12px; color: var(--text-muted); padding: 0 10px;">(Favor de reservar el color <span style="color: #a4de8b; font-weight: 500;">verde manzana pastel</span> para la quinceañera)</div>
                 </div>
 
                 <div class="divider"></div>
@@ -880,8 +886,14 @@
                 <!-- Confirmación de Asistencia (RSVP) -->
                 <div class="info-block">
                     <div class="info-label">Confirmación de Asistencia</div>
+                    <div style="font-family: 'Montserrat', sans-serif; font-size: 12px; color: var(--text-muted); margin-bottom: 15px;">Fecha límite de confirmación: 1ro de Septiembre</div>
                     <div class="form-container">
                         <input type="text" id="rsvp-name" class="form-input" placeholder="Escribe tu nombre completo">
+                        <select id="rsvp-status" class="form-input">
+                            <option value="">¿Asistirás al evento?</option>
+                            <option value="Sí, confirmo mi asistencia">Sí, ahí estaré</option>
+                            <option value="Lamentablemente no podré asistir">No podré asistir</option>
+                        </select>
                         <button onclick="sendRSVP()" class="btn-gold">Confirmar por WhatsApp</button>
                     </div>
                 </div>
@@ -1003,7 +1015,7 @@
         }, 1000);
 
         // --- SISTEMA DE PASES DIGITALES (BUSCADOR) ---
-        const guestData = {"Abigail Osorio": 3, "Abuelita Alicia": 1, "Abuelito Javier": 2, "Abuelito José Luis": 2, "Adriana Manríquez": 2, "Adrián Gonzales": 2, "Adrián López": 4, "Alberto Cerecer": 3, "Alejandro Miguel": 5, "Alexis Cruz": 2, "Alfonso": 2, "Amaya Rojo": 1, "Angelica": 4, "Antonio Pérez": 5, "Araceli Zaimez": 2, "Aranza": 1, "Aristeo": 4, "Barut López": 4, "Beatriz": 2, "Beatriz Tobon": 3, "Belén Galicia": 1, "Cesar Pimentel": 2, "Chirris": 1, "Claudia Sánchez": 2, "César Miguel": 1, "Dagoberto Reyes": 2, "Dalvi Miguel": 1, "Diana López": 8, "Dianey": 1, "Donaciano Antonio": 2, "Dulce Susana": 2, "Edwin Valdez": 2, "Enrique Cruz": 3, "Enrique López": 4, "Erick": 2, "Ernesto Salinas": 3, "Esther Cruz": 4, "Esther Reyes": 1, "Estrella": 3, "Ethan Ernesto": 1, "Eustaquio Cruz": 5, "Eustolia González": 5, "Evelin Cruz": 4, "Federico Francisco": 5, "Fernanda": 1, "Flavio  Jiménez": 3, "Francisco Miguel": 4, "Frida": 1, "Fulgencio Martín": 4, "Félix Gonzales": 5, "Félix Torrijos": 4, "Gabriel": 1, "Gabriela Peralta": 1, "Gerardo": 4, "Gina Díaz Reyes": 2, "Golla": 1, "Griselda Pérez": 4, "Gudelia Miguel": 2, "Hector  Vargas": 6, "Humberto Meléndez Pacheco": 2, "Héctor": 1, "Héctor Valdez": 3, "Isaac Alvarado": 2, "Ismael Cruz": 3, "Ismael Zamudio": 2, "Jaime Ramos": 4, "Jair": 2, "Janett": 4, "Javier Jiménez": 2, "Javier Mendoza": 4, "Jazz Raya": 4, "Jenni Santos": 4, "Jessi Cruz": 2, "Jesús": 1, "Joel Jiménez": 2, "Jorge": 2, "Jorge Valdez": 5, "Jose Carmen Tafolla": 6, "Josefina Méndez": 5, "Joselin": 3, "Josué": 2, "Juan Carlos Jiménez": 2, "Juan Ramirez": 4, "Juan Vargas": 2, "Julieta": 1, "Juventino Cruz": 2, "Karina Miguel": 1, "Lucero González": 4, "Luis Alberto": 2, "Luis Alberto Jiménez": 3, "Luis Bolaños": 4, "Luis Mendoza": 3, "Luis Ávalos Estrada": 4, "Magdalena Jiménez": 3, "Maitechu Rangel": 5, "Marco A.": 3, "Marco A.  Miguel": 3, "Marco Arana": 2, "Marcos Cruz": 5, "Margarita": 5, "Martha Villagran": 1, "Martín Retana": 4, "Maurilio Cruz": 4, "Max": 1, "Mayra": 4, "Mireya": 3, "Noemí Cruz": 2, "Noé Ferrer": 1, "Omar  López": 1, "Onesimo": 5, "Paula Gonzales": 7, "Pina": 1, "Ramiro  Reyes": 2, "Raúl   Reyes": 1, "Regina": 1, "Renata Piña": 1, "Renatita": 1, "Ricardo Bautista": 2, "Ricardo Cruz": 4, "Rodolfo López": 2, "Rosalba Reyes": 3, "Roy Ortiz": 3, "Rutilio  Jiménez": 10, "Said Flores": 1, "Samantha Ponce": 1, "Sara Aletia": 1, "Sebastián Reyes": 5, "Sergio Bautista": 2, "Silvia Galvan": 4, "Silvia Reyes": 8, "Susana Jiménez": 3, "Tabata Denisse Robles": 5, "Tais": 1, "Tomasa Miguel": 2, "Ulises Eduardo Gonzales": 4, "Valeria": 1, "Venancio Cruz": 2, "Victoria": 1, "Víctor Reyes": 5, "Wenceslao Ferrer": 3, "Yahel": 1, "Yaz": 2, "Yazmín Gonzales": 2, "Álvaro López": 2};
+        const guestData = {"Abigail Osorio": 3, "Abuelita Alicia": 1, "Abuelito Javier": 2, "Abuelito José Luis": 2, "Adriana Manríquez": 2, "Adrián Gonzales": 2, "Adrián López": 4, "Alberto Cerecer": 3, "Alejandro Miguel": 5, "Alexis Cruz": 4, "Alfonso": 2, "Amaya Rojo": 1, "Angelica": 4, "Antonio Pérez": 5, "Araceli Zaimez": 2, "Aranza": 1, "Aristeo": 4, "Barut López": 4, "Beatriz": 2, "Beatriz Tobon": 3, "Belén Galicia": 1, "Cesar Pimentel": 2, "Chirris": 1, "Claudia Sánchez": 2, "César Miguel": 1, "Dagoberto Reyes": 2, "Dalvi Miguel": 1, "Diana López": 8, "Dianey": 1, "Donaciano Antonio": 2, "Dulce Susana": 2, "Edwin Valdez": 2, "Enrique Cruz": 3, "Enrique López": 4, "Erick": 2, "Ernesto Salinas": 3, "Esther Cruz": 4, "Esther Reyes": 1, "Estrella": 3, "Ethan Ernesto": 1, "Eustaquio Cruz": 5, "Eustolia González": 5, "Evelin Cruz": 4, "Federico Francisco": 5, "Fernanda": 1, "Flavio  Jiménez": 3, "Francisco Miguel": 4, "Frida": 1, "Fulgencio Martín": 4, "Félix Gonzales": 5, "Félix Torrijos": 4, "Gabriel": 1, "Gabriela Peralta": 1, "Gerardo": 4, "Gina Díaz Reyes": 2, "Golla": 1, "Griselda Pérez": 4, "Gudelia Miguel": 2, "Hector  Vargas": 6, "Humberto Meléndez Pacheco": 2, "Héctor": 1, "Héctor Valdez": 3, "Isaac Alvarado": 2, "Ismael Cruz": 3, "Ismael Zamudio": 2, "Jaime Ramos": 4, "Jair": 2, "Janett": 4, "Javier Jiménez": 2, "Javier Mendoza": 4, "Jazz Raya": 4, "Jenni Santos": 4, "Jessi Cruz": 2, "Jesús": 1, "Joel Jiménez": 2, "Jorge": 2, "Jorge Valdez": 5, "Jose Carmen Tafolla": 6, "Josefina Méndez": 5, "Joselin": 3, "Josué": 2, "Juan Carlos Jiménez": 2, "Juan Ramirez": 4, "Juan Vargas": 2, "Julieta": 1, "Juventino Cruz": 2, "Karina Miguel": 1, "Lucero González": 4, "Luis Alberto": 2, "Luis Alberto Jiménez": 3, "Luis Bolaños": 4, "Luis Mendoza": 3, "Luis Ávalos Estrada": 4, "Magdalena Jiménez": 3, "Maitechu Rangel": 5, "Marco A.": 3, "Marco A.  Miguel": 3, "Marco Arana": 2, "Marcos Cruz": 5, "Margarita": 5, "Martha Villagran": 1, "Martín Retana": 4, "Maurilio Cruz": 4, "Max": 1, "Mayra": 4, "Mireya": 3, "Noemí Cruz": 2, "Noé Ferrer": 1, "Omar  López": 1, "Onesimo": 5, "Paula Gonzales": 7, "Pina": 1, "Ramiro  Reyes": 2, "Raúl   Reyes": 1, "Regina": 1, "Renata Piña": 1, "Renatita": 1, "Ricardo Bautista": 2, "Ricardo Cruz": 4, "Rodolfo López": 2, "Rosalba Reyes": 3, "Roy Ortiz": 3, "Rutilio  Jiménez": 10, "Said Flores": 1, "Samantha Ponce": 1, "Sara Aletia": 1, "Sebastián Reyes": 5, "Sergio Bautista": 2, "Silvia Galvan": 4, "Silvia Reyes": 8, "Susana Jiménez": 3, "Tabata Denisse Robles": 5, "Tais": 1, "Tomasa Miguel": 2, "Ulises Eduardo Gonzales": 4, "Valeria": 1, "Venancio Cruz": 2, "Victoria": 1, "Víctor Reyes": 5, "Wenceslao Ferrer": 3, "Yahel": 1, "Yaz": 2, "Yazmín Gonzales": 2, "Álvaro López": 2};
 
         // Función para quitar acentos y normalizar texto
         function normalizeString(str) {
@@ -1043,14 +1055,11 @@
             if (!foundName) {
                 const matches = [];
                 for (const [name, passes] of Object.entries(guestData)) {
-                    // Solo aceptamos coincidencias si lo que escribieron es parte del nombre guardado
-                    // Ej. Escriben "Marcos", guardado como "Marcos Cruz"
                     if (normalizeString(name).includes(normalizedInput)) {
                         matches.push({name, passes});
                     }
                 }
                 
-                // Si solo coincide una persona, se la mostramos
                 if (matches.length === 1) {
                     foundName = matches[0].name;
                     foundPasses = matches[0].passes;
@@ -1078,12 +1087,20 @@
         // Envío de WhatsApp - RSVP
         function sendRSVP() {
             const name = document.getElementById("rsvp-name").value.trim();
+            const status = document.getElementById("rsvp-status").value;
+            
             if (name === "") {
-                alert("Por favor, ingresa tu nombre para confirmar.");
+                alert("Por favor, ingresa tu nombre completo.");
                 return;
             }
+            
+            if (status === "") {
+                alert("Por favor, selecciona si asistirás o no.");
+                return;
+            }
+
             const phone = "525534622793";
-            const message = encodeURIComponent(`¡Hola! Confirmo mi asistencia a los XV años de Berenice. Soy: ${name}`);
+            const message = encodeURIComponent(`¡Hola! Soy ${name}. ${status} a los XV años de Berenice.`);
             window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
         }
 

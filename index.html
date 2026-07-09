@@ -889,11 +889,15 @@
                     <div style="font-family: 'Montserrat', sans-serif; font-size: 12px; color: var(--text-muted); margin-bottom: 15px;">Fecha límite de confirmación: 1ro de Septiembre</div>
                     <div class="form-container">
                         <input type="text" id="rsvp-name" class="form-input" placeholder="Escribe tu nombre completo">
-                        <select id="rsvp-status" class="form-input">
+                        
+                        <select id="rsvp-status" class="form-input" onchange="toggleGuestInput()">
                             <option value="">¿Asistirás al evento?</option>
-                            <option value="Sí, confirmo mi asistencia">Sí, ahí estaré</option>
-                            <option value="Lamentablemente no podré asistir">No podré asistir</option>
+                            <option value="yes">Sí, ahí estaré</option>
+                            <option value="no">Lamentablemente no podré asistir</option>
                         </select>
+                        
+                        <input type="number" id="rsvp-guests" class="form-input" placeholder="¿Cuántas personas asistirán?" min="1" style="display: none;">
+                        
                         <button onclick="sendRSVP()" class="btn-gold">Confirmar por WhatsApp</button>
                     </div>
                 </div>
@@ -1084,10 +1088,24 @@
             }
         }
 
+        // Mostrar/Ocultar campo de cantidad de personas
+        function toggleGuestInput() {
+            const status = document.getElementById("rsvp-status").value;
+            const guestInput = document.getElementById("rsvp-guests");
+            
+            if (status === "yes") {
+                guestInput.style.display = "block";
+            } else {
+                guestInput.style.display = "none";
+                guestInput.value = ""; // Limpiar si selecciona no
+            }
+        }
+
         // Envío de WhatsApp - RSVP
         function sendRSVP() {
             const name = document.getElementById("rsvp-name").value.trim();
             const status = document.getElementById("rsvp-status").value;
+            const guests = document.getElementById("rsvp-guests").value.trim();
             
             if (name === "") {
                 alert("Por favor, ingresa tu nombre completo.");
@@ -1099,8 +1117,19 @@
                 return;
             }
 
+            let message = "";
+            
+            if (status === "yes") {
+                if (guests === "" || parseInt(guests) < 1) {
+                    alert("Por favor, ingresa un número válido de personas que asistirán.");
+                    return;
+                }
+                message = encodeURIComponent(`¡Hola! Soy ${name}. Sí, confirmo mi asistencia a los XV años de Berenice. Asistiremos ${guests} personas de las asignadas a nuestro pase.`);
+            } else {
+                message = encodeURIComponent(`¡Hola! Soy ${name}. Lamentablemente no podré asistir a los XV años de Berenice. ¡Muchas gracias por la invitación!`);
+            }
+
             const phone = "525534622793";
-            const message = encodeURIComponent(`¡Hola! Soy ${name}. ${status} a los XV años de Berenice.`);
             window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
         }
 
